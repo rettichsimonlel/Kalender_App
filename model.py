@@ -26,3 +26,12 @@ class Data(Base):
     text = sqlalchemy.Column(sqlalchemy.String)
     user = relationship("User", backref="user_data")
 
+
+class Kalender(Base):
+    """Kalender representation."""
+
+    __tablename__ = "kalender"
+    kalender_id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True)
+    title = sqlalchemy.Column(sqlalchemy.String)
+    data = relationship("Data", backref="data_kalender")
+

@@ -1,7 +1,7 @@
 from my_calender import Calender
 import sqlalchemy
 import sqlalchemy.orm
-from model import Base, User, Data
+from model import Base, User, Data, Kalender
 
 calender = Calender()
 week = calender.make_week()
