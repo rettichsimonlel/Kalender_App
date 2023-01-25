@@ -10,13 +10,18 @@ def main():
     db_connection = database_connections("sqlite:///Calender.db")
     session_factory = session_creation(db_connection)
 
+    calender.draw_week()
     while (True):
-        calender.draw_week()
-
         print()
-        m_input = input("(q)uit, (a)dd, (n)ext, (b)revios: ")
+        m_input = input("(q)uit, (a)dd, (n)ext, (b)revios, (s)ave, (l)oad: ")
         if m_input == "q":
             break
+        if m_input == "n":
+            calender.next_week()
+        if m_input == "b":
+            calender.previos_week()
+        if m_input == "a":
+            calender.add()
         
 
 def database_connections(database_url):
