@@ -1,5 +1,7 @@
 import datetime
+import calendar
 from bcolors import bcolors
+import os
 
 class Calender():
     def __init__(self):
@@ -18,7 +20,9 @@ class Calender():
         return week
 
     def draw_week(self):
+        os.system("clear")
         week = self.make_week()
+        print(calendar.month_name[week[0].month])
         for i in range(7):
             output = f""
             if week[i].day == datetime.datetime.now().day:
@@ -34,6 +38,7 @@ class Calender():
                     if week[i].day == data["date"].day:
                         output += data["data"] + "; "
                 print(output)
+        print(calendar.month_name[week[6].month])
         print()
 
     def next_week(self):
