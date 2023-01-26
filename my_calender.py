@@ -24,14 +24,14 @@ class Calender():
             if week[i].day == datetime.datetime.now().day:
                 output += f"{bcolors.HEADER}{week[i].day}: " 
                 for data in self.data:
-                    if week[i].day == data["date"]:
+                    if week[i].day == data["date"].day:
                         output += data["data"] + "; "
                 output += f"{bcolors.ENDC}"
                 print(output)
             else:
                 output += f"{week[i].day}: "
                 for data in self.data:
-                    if week[i].day == data["date"]:
+                    if week[i].day == data["date"].day:
                         output += data["data"] + "; "
                 print(output)
         print()
@@ -50,7 +50,7 @@ class Calender():
         for i in range(7):
             if str(week[i].day) == choice:
                 data = input("Write your event: ")
-                self.data.append({"date": week[i].day, "data": data})
+                self.data.append({"date": week[i], "data": data})
                 break
         self.draw_week()
 
