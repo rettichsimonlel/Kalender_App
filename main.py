@@ -32,16 +32,11 @@ def main():
                         current_user = result[i]
             if current_user == None:
                 print("No succies")
-        # print(current_user)
-
-        # with session_factory() as session:
-        #     new_user = User(user_name="simon", password ="Kennwort1")
-        #     session.add(new_user)
-        #     session.commit()
 
         if current_user != None:
             os.system("clear")
             calender.draw_week()
+            crudid.load(calender, session_factory, current_user)
         while (current_user != None):
             print()
             m_input = input("(q)uit, (a)dd, (n)ext, (b)revios, (s)ave, (l)oad, (d)elete: ")
