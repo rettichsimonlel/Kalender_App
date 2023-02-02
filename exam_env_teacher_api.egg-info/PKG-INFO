@@ -1,0 +1,8 @@
+Metadata-Version: 2.1
+Name: exam-env-teacher-api
+Version: 1.0.0
+Summary: kalender app
+Home-page: https://github.com
+Author: Simon Retter
+Author-email: retter190085@sr.htlweiz.at
+Keywords: logging,pytest,file,parser,output,input,restful,rest,fastapi

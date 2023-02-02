@@ -1,7 +1,7 @@
 from getpass import getpass
 from my_calender import Calender
 from crud import CRUD
-from model import User, Kalender
+from model import User #, Kalender
 import os
 
 calender = Calender()
@@ -16,7 +16,7 @@ def main():
 
     while (True):
         if goto == False:
-            user_name = input("Username (q)uit, (r)egister: ")
+            user_name = input("Username (q)uit, (r)egister (s)how: ")
             if user_name == "q":
                 break
             elif user_name == "r":
@@ -26,6 +26,11 @@ def main():
                     new_user = User(user_name=i_user_name, password=i_password)
                     session.add(new_user)
                     session.commit()
+            elif user_name == "s":
+                with session_factory() as session:
+                    all_users = session.query(User).all()
+                for i in range(len(all_users)):
+                    print(all_users[i].user_name)
             else:
                 with session_factory() as session:
                     result = session.query(User).all()
