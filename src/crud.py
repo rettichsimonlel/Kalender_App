@@ -22,12 +22,27 @@ class CRUD():
             calender.data.append({"date": result[i].date, "data": result[i].text})
         calender.draw_week()
 
-
     def deletele(self, calender, session_factory, current_kalender):
-        with session_factory() as session:
-            session.query(Data).filter(Data.kalender_id==current_kalender.kalender_id).delete()
-            session.commit()
-        self.load_data(calender, session_factory, current_kalender)
+        m_input = input("Delete (a)ll (d)ay: ")
+        if m_input == "a":
+            with session_factory() as session:
+                session.query(Data).filter(Data.kalender_id==current_kalender.kalender_id).delete()
+                session.commit()
+            self.load_data(calender, session_factory, current_kalender)
+        elif m_input == "d":
+            d_input = int(input("Which day: "))
+            week = calender.make_week()
+            for i in range(len(week)):
+                if week[i].day == d_input:
+                    with session_factory() as session:
+                        something = session.query(Data).filter(Data.kalender_id==current_kalender.kalender_id).all()
+                        print(something[0].date)
+                        for j in range(len(something)):
+                            if something[j].date.day == week[i].day and something[j].date.month == week[i].month and something[j].date.year == week[i].year:
+                                print(something[j].text)
+                                session.delete(something[j])
+                        session.commit()
+                    pass
 
     def create(self, database_url):
         db_connection = sqlalchemy.create_engine(database_url)

@@ -59,3 +59,19 @@ class Calender():
                 break
         self.draw_week()
 
+    def update(self):
+        week = self.make_week()
+        choice = input("What day to change: ")
+        for i in range(7):
+            if str(week[i].day) == choice:
+                fuck_me = []
+                for j in range(len(self.data)):
+                    if self.data[j]["date"].day == week[i].day and self.data[j]["date"].month == week[i].month and self.data[j]["date"].year == week[i].year:
+                        fuck_me.append(self.data[j])
+                for j in range(len(fuck_me)):
+                    self.data.remove(fuck_me[j])
+                data = input("Write your event: ")
+                self.data.append({"date": week[i], "data": data})
+                break
+        self.draw_week()
+

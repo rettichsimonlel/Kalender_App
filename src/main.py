@@ -68,7 +68,7 @@ def main():
 
         while (current_kalender != None):
             print()
-            m_input = input("(q)uit, (a)dd, (n)ext, (b)revios, (s)ave, (l)oad, (d)elete: ")
+            m_input = input("(q)uit, (a)dd, (n)ext, (b)revios, (s)ave, (l)oad, (d)elete (u)pdate: ")
             if m_input == "q":
                 calender.data = []
                 os.system("clear")
@@ -87,6 +87,10 @@ def main():
                 crudid.load_data(calender, session_factory, current_kalender)
             if m_input == "d":
                 crudid.deletele(calender, session_factory, current_kalender)
+                crudid.load_data(calender, session_factory, current_kalender)
+                calender.draw_week()
+            if m_input == "u":
+                calender.update()
 
 if __name__ == "__main__":
     main()
