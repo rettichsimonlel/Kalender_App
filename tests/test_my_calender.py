@@ -1,8 +1,5 @@
-import pytest
 import datetime
 import calendar
-from bcolors import bcolors
-import os
 from my_calender import Calender
 
 def test_init():

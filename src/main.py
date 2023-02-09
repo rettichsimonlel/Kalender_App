@@ -26,6 +26,7 @@ def main():
                     new_user = User(user_name=i_user_name, password=i_password)
                     session.add(new_user)
                     session.commit()
+                os.system("clear")
             elif user_name == "s":
                 with session_factory() as session:
                     all_users = session.query(User).all()
@@ -49,8 +50,10 @@ def main():
                 k_input = input("Kalender (q)uit (a)dd, (d)elete: ")
                 if k_input == "a":
                     crudid.add_kalender(session_factory, current_user)
+                    os.system("clear")
                 elif k_input == "d":
                     crudid.delete_kalender(session_factory, current_user)
+                    os.system("clear")
                 elif k_input == "q":
                     os.system("clear")
                     current_kalender = None
