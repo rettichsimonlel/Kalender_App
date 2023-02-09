@@ -58,7 +58,10 @@ def main():
                     goto = False
                     break
                 else:
-                    current_kalender = kalender_result[int(k_input)]
+                    try:
+                        current_kalender = kalender_result[int(k_input)]
+                    except:
+                        goto = True
                     break
 
 
@@ -75,22 +78,25 @@ def main():
                 current_kalender = None
                 goto = True
                 break
-            if m_input == "n":
+            elif m_input == "n":
                 calender.next_week()
-            if m_input == "b":
+            elif m_input == "b":
                 calender.previos_week()
-            if m_input == "a":
+            elif m_input == "a":
                 calender.add()
-            if m_input == "s":
+            elif m_input == "s":
                 crudid.save(calender, session_factory, current_kalender)
-            if m_input == "l":
+            elif m_input == "l":
                 crudid.load_data(calender, session_factory, current_kalender)
-            if m_input == "d":
+            elif m_input == "d":
                 crudid.deletele(calender, session_factory, current_kalender)
                 crudid.load_data(calender, session_factory, current_kalender)
                 calender.draw_week()
-            if m_input == "u":
+            elif m_input == "u":
                 calender.update()
+            else:
+                os.system("clear")
+                calender.draw_week()
 
 if __name__ == "__main__":
     main()

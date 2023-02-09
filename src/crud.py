@@ -30,7 +30,10 @@ class CRUD():
                 session.commit()
             self.load_data(calender, session_factory, current_kalender)
         elif m_input == "d":
-            d_input = int(input("Which day: "))
+            try:
+                d_input = int(input("Which day: "))
+            except:
+                return
             week = calender.make_week()
             for i in range(len(week)):
                 if week[i].day == d_input:
@@ -61,9 +64,6 @@ class CRUD():
     def delete_kalender(self, session_factory, current_user):
         m_input = input("Name which kalender to destroy: ")
         with session_factory() as session:
-            # something = session.query(Data).filter(Data.kalender_id==m_input).all()
-            # for i in range(len(something)):
-            #     session.delete(something[i])
             something = session.query(Kalender).filter(Kalender.user_id.like(current_user.user_id), Kalender.title.like(m_input)).all()
             result = session.query(Data).filter(Data.kalender_id==something[0].kalender_id).all()
             for i in range(len(result)):
